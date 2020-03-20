@@ -15,8 +15,9 @@ public class LoginPage {
     //div[@class="container-lg px-2"]
 
     private By textGithub = By.xpath("//h1[text()='Sign in to GitHub']");
-    private By error = By.xpath("//div[@class=\"container-lg px-2\"]");
+    private By error = By.xpath("//div[@class=\"flash flash-full flash-error\"]");
     private By createAccountButton = By.xpath("//p//a");
+    private By signInButton = By.xpath("//input[@value=\"Sign in\"]");
     private By logInButton = By.xpath("//input[@value='Sign in']");
     private By loginOrEmailField = By.xpath("//*[@id='login_field']");
     private By passwordField = By.xpath("//*[@id='password']");
@@ -31,7 +32,7 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage clicklogInButton(String username, String password) {
+    public LoginPage createAccount(String username, String password) {
         this.inputLoginOrEmail(username);
         this.inputPassword(password);
         driver.findElement(logInButton).click();
@@ -46,8 +47,13 @@ public class LoginPage {
         return driver.findElement(error).getText();
     }
 
-    public LoginPage createAccount() {
-        driver.findElement(createAccountButton).click();
+    public LoginPage clickSignInButton() {
+        driver.findElement(signInButton).click();
         return new LoginPage(driver);
+    }
+
+    public SignUpPage clickCreateAnAccount() {
+        driver.findElement(createAccountButton).click();
+        return new SignUpPage(driver);
     }
 }

@@ -18,20 +18,22 @@ public class SignUpPage {
     //*[@id="input-check-5346"]
 
     private By textGithub = By.xpath("//h1");
-    private By errorLogin = By.xpath("//*[@id=\"input-check-5381\"]");
-    private By errorEmail = By.xpath("//*[@id=\"input-check-5346\"]");
+    private By errorMain = By.xpath("//div[@class=\"flash flash-error my-3\"]");
+    private By errorLogin = By.xpath("//auto-check[1]//dd[@class=\"error\"]//div[@class=\"m-1\"]/div[1]");
+    private By errorEmail = By.xpath("//auto-check[2]//dd[@class=\"error\"]");
+    private By errorPassword = By.xpath("//auto-check[@src=\"/signup_check/email\"]//dd[@class=\"error\"]");
     private By createAccountButton = By.xpath("//*[@id='signup_button']");
     private By loginOrEmailField = By.xpath("//*[@id='user_login']");
     private By emailField = By.xpath("//*[@id='user_email']");
     private By passwordField = By.xpath("//*[@id='user_password']");
 
-    public SignUpPage inputLoginOrEmail(String email) {
-        driver.findElement(loginOrEmailField).sendKeys(email);
+    public SignUpPage inputLogin(String login) {
+        driver.findElement(loginOrEmailField).sendKeys(login);
         return this;
     }
 
-    public SignUpPage inputEmail(String password) {
-        driver.findElement(emailField).sendKeys(password);
+    public SignUpPage inputEmail(String email) {
+        driver.findElement(emailField).sendKeys(email);
         return this;
     }
 
@@ -41,15 +43,23 @@ public class SignUpPage {
     }
 
     public SignUpPage clickRegistrateInButton(String username, String email, String password) {
-        this.inputLoginOrEmail(username);
+        this.inputLogin(username);
         this.inputEmail(email);
         this.inputPassword(password);
         driver.findElement(createAccountButton).click();
         return new SignUpPage(driver);
     }
 
+    public String getErrorMain() {
+        return driver.findElement(errorMain).getText();
+    }
+
     public String getErrorLogin() {
         return driver.findElement(errorLogin).getText();
+    }
+
+    public String getErrorPassword() {
+        return driver.findElement(errorPassword).getText();
     }
 
     public String getErrorEmail() {

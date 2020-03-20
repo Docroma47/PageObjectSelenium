@@ -15,8 +15,7 @@ public class MainClass {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-//        MainPage mainPage = new MainPage(driver);
-        MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
+        MainPage mainPage = new MainPage(driver);
 
         driver.get("https://github.com");
         sleep(2000);
