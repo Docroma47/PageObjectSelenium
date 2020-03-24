@@ -4,13 +4,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
+
 public class MainClassTest {
     private WebDriver driver;
     private MainPage mainPage;
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", "A:\\Proj\\TestSelenium\\drivers\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "Drivers\\geckodriver.exe");
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
@@ -24,30 +26,40 @@ public class MainClassTest {
     }
 
     @Test
-    public void signUpTest() {
+    public void signUpTest() throws InterruptedException {
+        sleep(2000);
         SignUpPage signUpPage = mainPage.clickSignUpFormButton();
+        sleep(2000);
         String heading = signUpPage.getHeadingText();
+        sleep(2000);
         Assert.assertEquals("Create your account", heading);
     }
 
     @Test
-    public void registerFailTest() {
+    public void registerFailTest()  throws InterruptedException  {
+        sleep(2000);
         mainPage.register("re", "ftsd@fd", "s321");
+        sleep(2000);
         String error = mainPage.getErrorLogin();
         Assert.assertEquals("Username re is not available.", error);
     }
 
     @Test
-    public void logInHeadingTest() {
+    public void logInHeadingTest()  throws InterruptedException  {
+        sleep(2000);
         LoginPage loginPage = mainPage.clickSignIn();
+        sleep(2000);
         String text = loginPage.getHeadingText();
         Assert.assertEquals("Sign in to GitHub", text);
     }
 
     @Test
-    public void logInFailTest() {
+    public void logInFailTest()  throws InterruptedException  {
+        sleep(2000);
         LoginPage loginPage = mainPage.clickSignIn();
+        sleep(2000);
         loginPage.createAccount("roma", "5654fdg");
+        sleep(2000);
         String text = loginPage.getErrorText();
         Assert.assertEquals("Incorrect username or password.", text);
     }

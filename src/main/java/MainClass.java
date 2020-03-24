@@ -10,7 +10,7 @@ public class MainClass {
         static FirefoxDriver driver;
 
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("webdriver.gecko.driver", "A:\\Proj\\TestSelenium\\drivers\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "Drivers\\geckodriver.exe");
 
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

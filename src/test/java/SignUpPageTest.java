@@ -7,6 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
+
 public class SignUpPageTest {
 
     WebDriver driver;
@@ -14,7 +16,7 @@ public class SignUpPageTest {
 
     @Before
     public void setUp(){
-        System.setProperty("webdriver.gecko.driver", "A:\\Proj\\TestSelenium\\drivers\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "Drivers\\geckodriver.exe");
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
@@ -23,21 +25,26 @@ public class SignUpPageTest {
     }
 
     @Test
-    public void signUpReservedUsernameTest(){
+    public void signUpReservedUsernameTest() throws InterruptedException {
+        sleep(2000);
         SignUpPage sp = signUpPage.inputLogin("username");
+        sleep(2000);
         String error = sp.getErrorLogin();
         Assert.assertEquals("Username 'username' is unavailable.", error);
     }
 
     @Test
-    public void signUpTakenUsername(){
+    public void signUpTakenUsername() throws InterruptedException {
+        sleep(2000);
         SignUpPage sp = signUpPage.inputLogin("user");
+        sleep(2000);
         String error = sp.getErrorLogin();
         Assert.assertEquals("Username user is not available.", error);
     }
 
     @Test
-    public void getHeadingTest(){
+    public void getHeadingTest() throws InterruptedException {
+        sleep(2000);
         String heading = signUpPage.getHeadingText();
         Assert.assertEquals("Create your account", heading);
     }
