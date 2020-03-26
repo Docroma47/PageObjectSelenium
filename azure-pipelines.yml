@@ -10,11 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: AzureWebApp@1
-  inputs:
-    appType: 'webAppLinux'
-    appName: 
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
