@@ -13,7 +13,7 @@ public class MainClassTest {
     @Before
     public void setUp() {
         if ((System.getProperty("os.name").substring(0, 3)).equals("Lin")) {
-            System.setProperty("webdriver.gecko.driver", "Drivers\\Linux\\geckodriver");
+            System.setProperty("webdriver.gecko.driver", "Drivers//Linux//geckodriver");
         } else {
             System.setProperty("webdriver.gecko.driver", "Drivers\\geckodriver.exe");
         }

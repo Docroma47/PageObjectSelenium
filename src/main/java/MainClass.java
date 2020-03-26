@@ -11,7 +11,7 @@ public class MainClass {
 
     public static void main(String[] args) throws InterruptedException {
         if ((System.getProperty("os.name").substring(0, 3)).equals("Lin")) {
-            System.setProperty("webdriver.gecko.driver", "Drivers\\Linux\\geckodriver");
+            System.setProperty("webdriver.gecko.driver", "Drivers//Linux//geckodriver");
         } else {
             System.setProperty("webdriver.gecko.driver", "Drivers\\geckodriver.exe");
         }
