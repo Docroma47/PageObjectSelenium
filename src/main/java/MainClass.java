@@ -13,7 +13,7 @@ public class MainClass {
         if ((System.getProperty("os.name").substring(0, 3)).equals("Lin")) {
             System.setProperty("webdriver.gecko.driver", "Drivers//Linux//geckodriver");
         } else {
-            System.setProperty("webdriver.gecko.driver", "Drivers\\geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver", "Drivers\\Windows\\geckodriver.exe");
         }
 
         driver = new FirefoxDriver();
