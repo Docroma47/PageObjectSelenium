@@ -1,6 +1,8 @@
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,12 +14,16 @@ public class MainClassTest {
 
     @Before
     public void setUp() {
+        FirefoxBinary firefoxBinary = new FirefoxBinary();
+        firefoxBinary.addCommandLineOptions("--headless");
         if ((System.getProperty("os.name").substring(0, 3)).equals("Lin")) {
             System.setProperty("webdriver.gecko.driver", "Drivers//Linux//geckodriver");
         } else {
             System.setProperty("webdriver.gecko.driver", "Drivers\\Windows\\geckodriver.exe");
         }
-        driver = new FirefoxDriver();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setBinary(firefoxBinary);
+        driver = new FirefoxDriver(firefoxOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://github.com/");
